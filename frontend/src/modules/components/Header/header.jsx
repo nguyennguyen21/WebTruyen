@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { FaUserCircle, FaBars, FaHome, FaHistory, FaListAlt, FaTrophy, FaSearch } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
+import { FaUserCircle, FaBars, FaHome, FaHistory, FaListAlt, FaTrophy, FaSearch } from "react-icons/fa";
+import { RiUserFollowLine } from "react-icons/ri";
 const Header = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-
+ 
   // Ctrl + K để mở ô tìm kiếm
   useEffect(() => {
     const handleKeyDown = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
-        setShowSearch(true);
+        
       }
     };
 
@@ -33,9 +34,12 @@ const Header = () => {
           <a href="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <FaHome /> Trang chủ
           </a>
-          <a href="/history" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
-            <FaHistory /> Lịch sử
+          <a href="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
+            <RiUserFollowLine /> Theo dõi
           </a>
+          <Link to="/Home/History" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
+            <FaHistory /> Lịch sử
+          </Link>
           <div className="relative group">
             <button className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
               <FaListAlt /> Thể loại
@@ -49,25 +53,50 @@ const Header = () => {
           <a href="/rank" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <FaTrophy /> Xếp hạng
           </a>
-          <button onClick={() => setShowSearch(true)} className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
-            <FaSearch /> Tìm kiếm
-          </button>
+         
 
-          {/* Avatar */}
-          <div className="relative">
-            <button
-              onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
-              className="text-gray-700 focus:outline-none"
-            >
-              <FaUserCircle size={30} />
-            </button>
-            {isSubMenuOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
-                <a href="/login" className="block px-4 py-2 hover:bg-gray-100">Đăng nhập</a>
-                <a href="/register" className="block px-4 py-2 hover:bg-gray-100">Đăng ký</a>
-              </div>
-            )}
-          </div>
+        {/* Avatar hiện đại */}
+<div className="relative">
+  <button
+    onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+    className="flex items-center gap-2 focus:outline-none group"
+  >
+    {/* Avatar hình tròn với hover scale nhẹ */}
+    <div className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white font-semibold shadow-sm group-hover:scale-105 transition-transform duration-200">
+      U
+    </div>
+    <span className="hidden sm:inline text-gray-700 text-sm font-medium group-hover:text-blue-600 transition-colors duration-200">
+      Tài khoản
+    </span>
+  </button>
+
+  {/* Dropdown menu với hiệu ứng animate */}
+  {isSubMenuOpen && (
+    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-10 overflow-hidden animate-fadeIn">
+      <div className="py-2">
+        <Link
+          to="Home/Login/SignIn"
+          className="flex items-center gap-3 px-4 py-2.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
+        >
+          <span className="p-1.5 rounded-full bg-blue-100 text-blue-600">
+            <FaUserCircle size={14} />
+          </span>
+          Đăng nhập
+        </Link>
+        <Link 
+        to="Home/Login/SignUp"
+          className="flex items-center gap-3 px-4 py-2.5 text-gray-700 hover:bg-green-50 hover:text-green-600 transition-all duration-200"
+        >
+          <span className="p-1.5 rounded-full bg-green-100 text-green-600">
+            <FaUserCircle size={14} />
+          </span>
+          Đăng ký
+        </Link>
+      </div>
+    </div>
+  )}
+
+</div>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -102,12 +131,7 @@ const Header = () => {
             <a href="/rank" className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
               <FaTrophy /> Xếp hạng
             </a>
-            <button
-              onClick={() => setShowSearch(true)}
-              className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100"
-            >
-              <FaSearch /> Tìm kiếm
-            </button>
+           
             <a href="/login" className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
               <FaUserCircle /> Đăng nhập
             </a>
@@ -118,35 +142,7 @@ const Header = () => {
         </div>
       )}
 
-      {/* Global Search Modal */}
-      {showSearch && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setShowSearch(false)}
-        >
-          <div
-            className="bg-white p-6 rounded-xl shadow-2xl w-96 transition-transform transform scale-100"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center mb-4">
-              <FaSearch className="text-gray-500 mr-2" />
-              <input
-                type="text"
-                placeholder="Tìm kiếm..."
-                autoFocus
-                className="flex-grow p-2 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
-              />
-              <button
-                onClick={() => setShowSearch(false)}
-                className="ml-2 text-gray-500 hover:text-gray-800"
-              >
-                ✖
-              </button>
-            </div>
-            <div className="text-sm text-gray-500 text-center">Nhấn ESC hoặc click ra ngoài để đóng</div>
-          </div>
-        </div>
-      )}
+      
     </header>
   );
 };

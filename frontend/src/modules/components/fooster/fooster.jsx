@@ -1,100 +1,167 @@
-import React from "react";
+import React from 'react';
 
-const Footer = () => {
+const Fooster = () => {
   return (
-    <footer className="footer bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white relative overflow-hidden">
-      <div id="particles" className="footer-particles absolute top-0 left-0 w-full h-full pointer-events-none"></div>
-      <div className="footer-wave absolute bottom-0 left-0 w-full h-24 bg-repeat-x bg-[url(' https://storage.googleapis.com/site-assets/wave.png ')] animate-[wave_8s_linear_infinite] transform translate-y-full"></div>
-
-      <div className="footer-container max-w-6xl mx-auto px-4 py-12">
-        <div className="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* About Section */}
-          <div className="footer-about scroll-animate">
-            <div className="footer-logo mb-6">
-              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/26e3a213-1a97-4c54-9328-0685ecbff060.png " alt="Logo" className="mb-4" />
-              <p className="text-gray-300">Chúng tôi cam kết mang lại những sản phẩm và dịch vụ chất lượng cao cho khách hàng.</p>
+    <footer className="bg-gradient-to-r from-black to-gray-900 text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
+          {/* Logo và Giới thiệu */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/33b00eb1-44cd-43c2-8705-c78b6f088f3b.png "
+                alt="Logo công ty với nền gradient xanh dương"
+                className="w-12 h-12 rounded-lg"
+              />
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-100">
+                YourBrand
+              </span>
             </div>
-            <div className="social-links flex gap-4">
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 transition-all duration-300">
-                <i className="fab fa-facebook-f text-white"></i>
+            <p className="text-blue-100 leading-relaxed">
+              Cung cấp giải pháp công nghệ tiên tiến với chất lượng hàng đầu. Đồng hành cùng sự phát triển của bạn.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="social-icon text-gray-200 hover:text-white transition-all transform hover:-translate-y-1">
+                <i className="fab fa-facebook-f text-lg"></i>
               </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 transition-all duration-300">
-                <i className="fab fa-twitter text-white"></i>
+              <a href="#" className="social-icon text-gray-200 hover:text-white transition-all transform hover:-translate-y-1">
+                <i className="fab fa-twitter text-lg"></i>
               </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 transition-all duration-300">
-                <i className="fab fa-instagram text-white"></i>
+              <a href="#" className="social-icon text-gray-200 hover:text-white transition-all transform hover:-translate-y-1">
+                <i className="fab fa-instagram text-lg"></i>
               </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 transition-all duration-300">
-                <i className="fab fa-linkedin-in text-white"></i>
-              </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-700 hover:bg-blue-600 transition-all duration-300">
-                <i className="fab fa-youtube text-white"></i>
+              <a href="#" className="social-icon text-gray-200 hover:text-white transition-all transform hover:-translate-y-1">
+                <i className="fab fa-linkedin-in text-lg"></i>
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="footer-links-container scroll-animate" style={{ transitionDelay: "0.1s" }}>
-            <h3 className="footer-heading text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-8px] after:w-10 after:h-1 after:bg-blue-400 after:rounded-full after:animate-pulse">
-              Liên kết nhanh
-            </h3>
-            <ul className="footer-links list-none p-0 space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Trang chủ</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Về chúng tôi</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Dịch vụ</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Sản phẩm</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Tin tức</a></li>
+          {/* Liên kết nhanh */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-semibold text-white uppercase tracking-wider">Liên Kết Nhanh</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Trang Chủ
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Giới Thiệu
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Dịch Vụ
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Bảng Giá
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Liên Hệ
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Support */}
-          <div className="footer-links-container scroll-animate" style={{ transitionDelay: "0.2s" }}>
-            <h3 className="footer-heading text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-8px] after:w-10 after:h-1 after:bg-blue-400 after:rounded-full after:animate-pulse">
-              Hỗ trợ
-            </h3>
-            <ul className="footer-links list-none p-0 space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Câu hỏi thường gặp</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Chính sách bảo mật</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Điều khoản dịch vụ</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Chính sách hoàn tiền</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-all duration-300 relative group">Hướng dẫn sử dụng</a></li>
+          {/* Dịch vụ */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-semibold text-white uppercase tracking-wider">Dịch Vụ</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Thiết Kế Web
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Phát Triển Ứng Dụng
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Marketing Digital
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Tư Vấn CNTT
+                </a>
+              </li>
+              <li>
+                <a href="#" className="footer-link flex items-center text-blue-100 hover:text-white transition-all transform hover:translate-x-1">
+                  <span className="mr-2">→</span> Hosting & Domain
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="footer-contact scroll-animate" style={{ transitionDelay: "0.3s" }}>
-            <h3 className="footer-heading text-lg font-semibold mb-4 relative inline-block after:content-[''] after:absolute after:left-0 after:bottom-[-8px] after:w-10 after:h-1 after:bg-blue-400 after:rounded-full after:animate-pulse">
-              Liên hệ
-            </h3>
-            <p className="flex items-center gap-2 text-gray-300 mb-2">
-              <i className="fas fa-map-marker-alt"></i> Số 123, Đường ABC, Quận XYZ, TP.HCM
-            </p>
-            <p className="flex items-center gap-2 text-gray-300 mb-2">
-              <i className="fas fa-phone-alt"></i> +84 123 456 789
-            </p>
-            <p className="flex items-center gap-2 text-gray-300 mb-2">
-              <i className="fas fa-envelope"></i> info@example.com
-            </p>
-            <p className="flex items-center gap-2 text-gray-300">
-              <i className="fas fa-clock"></i> Thứ 2 - Thứ 6: 8:00 - 17:00
-            </p>
+          {/* Liên hệ */}
+          <div className="space-y-5">
+            <h3 className="text-lg font-semibold text-white uppercase tracking-wider">Liên Hệ</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <i className="fas fa-map-marker-alt mt-1 mr-3 text-blue-200"></i>
+                <span className="text-blue-100">123 Đường ABC, Quận XYZ, TP.HCM</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-phone-alt mr-3 text-blue-200"></i>
+                <span className="text-blue-100">+84 123 456 789</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-envelope mr-3 text-blue-200"></i>
+                <span className="text-blue-100">contact@yourbrand.com</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-clock mr-3 text-blue-200"></i>
+                <span className="text-blue-100">Thứ 2 - Thứ 6: 8:00 - 17:00</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="footer-bottom mt-12 pt-6 border-t border-gray-700 text-center text-gray-400 scroll-animate" style={{ transitionDelay: "0.4s" }}>
-          <p>© 2023 Tên Công Ty. Bảo lưu mọi quyền.</p>
+        {/* Newsletter */}
+        <div className="mt-16 mb-12">
+          <div className="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm">
+            <div className="max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-semibold mb-4 text-white">Đăng Ký Nhận Tin</h3>
+              <p className="text-blue-100 mb-6">Nhận thông tin mới nhất và ưu đãi đặc biệt qua email</p>
+              <form className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  placeholder="Email của bạn"
+                  className="flex-grow px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-blue-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 text-white placeholder-blue-200 outline-none transition"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+                >
+                  Đăng Ký
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-blue-700 pt-8 mt-8 flex flex-col md:flex-row items-center justify-between">
+          <div className="text-blue-300 text-sm mb-4 md:mb-0 text-center md:text-left">
+            © 2023 YourBrand. Bảo lưu mọi quyền.
+          </div>
+          <div className="flex space-x-6">
+            <a href="#" className="text-blue-300 hover:text-white text-sm">Điều Khoản</a>
+            <a href="#" className="text-blue-300 hover:text-white text-sm">Bảo Mật</a>
+            <a href="#" className="text-blue-300 hover:text-white text-sm">Cookie</a>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes wave {
-          0% { background-position-x: 0; }
-          100% { background-position-x: 1000px; }
-        }
-      `}</style>
     </footer>
   );
 };
 
-export default Footer;
+export default Fooster;
