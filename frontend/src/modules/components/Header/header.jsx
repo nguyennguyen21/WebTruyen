@@ -1,3 +1,4 @@
+import { ROUTES } from "../../config/routes";
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
@@ -31,13 +32,13 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-6 items-center">
-          <Link to="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
+          <Link to={ROUTES.HOME} className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <FaHome /> Trang chủ
           </Link>
           <a href="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <RiUserFollowLine /> Theo dõi
           </a>
-          <Link to="/Home/History" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
+          <Link to={ROUTES.HISTORY} className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <FaHistory /> Lịch sử
           </Link>
           <div className="relative group">

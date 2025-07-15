@@ -1,11 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Pages
 import Home from './pages/Home'
 import DetailCM from './pages/Detailchapter';
 import History from './pages/History';
+import ChangePW from './pages/Changepassword';
+
+//component
 import Header from './modules/components/Header/header'
 import Fooster from './modules/components/fooster/fooster';
 import Login from './modules/components/users/Login/Login';
-import ChangePW from './pages/Changepassword';
+
+import  {ROUTES}  from './modules/config/routes';
 
 import './App.css'
 
@@ -16,14 +22,14 @@ function App() {
     <Header />
      
       <Routes>
-        <Route path="/" element={<Home />}>
+        <Route path={ROUTES.HOME} element={<Home />}>
           <Route index element={<Home />} />
         </Route>
         <Route path="/Home/DetailCM" element={<DetailCM />}/>
-        <Route path="/Home/History" element={<History/>}/>
+        <Route path= {ROUTES.HISTORY} element={<History/>}/>
         <Route path="Home/Login/SignIn" element={<Login isLogin={true} />} />
         <Route path="Home/Login/SignUp" element={<Login isLogin={false} />} />
-           <Route path="/Home/user/changepassword" element={<ChangePW/>}></Route>
+        <Route path="/Home/user/changepassword" element={<History/>}></Route>
       </Routes>
       <Fooster/>
     </BrowserRouter>
