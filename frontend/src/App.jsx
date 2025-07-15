@@ -27,8 +27,8 @@ function App() {
         </Route>
         <Route path="/Home/DetailCM" element={<DetailCM />}/>
         <Route path= {ROUTES.HISTORY} element={<History/>}/>
-        <Route path="Home/Login/SignIn" element={<Login isLogin={true} />} />
-        <Route path="Home/Login/SignUp" element={<Login isLogin={false} />} />
+        <Route path={ROUTES.LOGIN} element={<Login isLogin={true} />} />
+        <Route path={ROUTES.REGISTER} element={<Login isLogin={false} />} />
         <Route path="/Home/user/changepassword" element={<History/>}></Route>
       </Routes>
       <Fooster/>
