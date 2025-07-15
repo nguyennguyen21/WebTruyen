@@ -31,9 +31,9 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-6 items-center">
-          <a href="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
+          <Link to="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <FaHome /> Trang chủ
-          </a>
+          </Link>
           <a href="/" className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition">
             <RiUserFollowLine /> Theo dõi
           </a>

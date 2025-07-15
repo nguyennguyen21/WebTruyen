@@ -5,6 +5,7 @@ import History from './pages/History';
 import Header from './modules/components/Header/header'
 import Fooster from './modules/components/fooster/fooster';
 import Login from './modules/components/users/Login/Login';
+import ChangePW from './pages/Changepassword';
 
 import './App.css'
 
@@ -18,10 +19,11 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route index element={<Home />} />
         </Route>
-        <Route path="/Home/DetailCM" element={<DetailCM />}></Route>
-        <Route path="/Home/History" element={<History/>}></Route>
+        <Route path="/Home/DetailCM" element={<DetailCM />}/>
+        <Route path="/Home/History" element={<History/>}/>
         <Route path="Home/Login/SignIn" element={<Login isLogin={true} />} />
         <Route path="Home/Login/SignUp" element={<Login isLogin={false} />} />
+           <Route path="/Home/user/changepassword" element={<ChangePW/>}></Route>
       </Routes>
       <Fooster/>
     </BrowserRouter>
