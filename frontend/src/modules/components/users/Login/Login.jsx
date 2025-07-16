@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // 👈 Thêm useNavigate
 import { registerUser, loginUser } from "../../../api/authApi";
 import {
   FaFacebookF,
@@ -14,7 +15,7 @@ const Login = ({ isLogin: initialTab = true }) => {
 
   // State cho form đăng ký
   const [registerData, setRegisterData] = useState({
-    name: "",
+    name:"",
     email: "",
     phone: "",
     password: "",
@@ -25,6 +26,8 @@ const Login = ({ isLogin: initialTab = true }) => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate(); // 👈 Dùng để điều hướng
 
   // Xử lý thay đổi input đăng ký
   const handleRegisterChange = (e) => {
@@ -64,11 +67,13 @@ const Login = ({ isLogin: initialTab = true }) => {
         Email: email,
         Phone: phone,
         PassWords: password,
-        Roles: "user", // Thêm role mặc định
+        Roles: "user",
       });
       alert("Đăng ký thành công!");
+
+      // 👇 Tự động chuyển sang tab Đăng nhập
       setRegisterData({ name: "", email: "", phone: "", password: "" });
-      setIsLogin(true); // Tự động chuyển sang tab login
+      setIsLogin(true); // Chuyển sang tab đăng nhập
     } catch (err) {
       alert(err.message || "Lỗi đăng ký");
     } finally {
@@ -92,9 +97,20 @@ const Login = ({ isLogin: initialTab = true }) => {
         Email: email,
         PassWords: password,
       });
-      localStorage.setItem('token', _data.token); // Lưu token
+
+      // 👇 Lưu token và tên người dùng vào localStorage
+      localStorage.setItem("token", _data.token);
+      localStorage.setItem("user", JSON.stringify({ name: _data.user.Username }));
+
       alert("Đăng nhập thành công!");
+
+      // 👇 Reset form và điều hướng
       setLoginData({ email: "", password: "" });
+      setIsLoading(false);
+
+      // 👇 Điều hướng về trang chủ + reload để Header cập nhật
+      navigate("/");
+      window.location.reload(); // 🔁 Reload để Header nhận trạng thái mới
     } catch (err) {
       alert(err.message || "Lỗi đăng nhập");
     } finally {
@@ -135,10 +151,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           className={`${!isLogin ? "hidden" : ""} space-y-5`}
         >
           <div>
-            <label
-              htmlFor="login-email"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="login-email" className="block text-sm font-medium mb-1">
               Email
             </label>
             <input
@@ -154,10 +167,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           </div>
 
           <div>
-            <label
-              htmlFor="login-password"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="login-password" className="block text-sm font-medium mb-1">
               Mật khẩu
             </label>
             <input
@@ -205,10 +215,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           className={`${isLogin ? "hidden" : ""} space-y-5`}
         >
           <div>
-            <label
-              htmlFor="register-name"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="register-name" className="block text-sm font-medium mb-1">
               Họ và tên
             </label>
             <div className="relative">
@@ -229,10 +236,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           </div>
 
           <div>
-            <label
-              htmlFor="register-email"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="register-email" className="block text-sm font-medium mb-1">
               Email
             </label>
             <input
@@ -247,10 +251,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           </div>
 
           <div>
-            <label
-              htmlFor="register-password"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="register-password" className="block text-sm font-medium mb-1">
               Mật khẩu
             </label>
             <input
@@ -265,10 +266,7 @@ const Login = ({ isLogin: initialTab = true }) => {
           </div>
 
           <div>
-            <label
-              htmlFor="register-phone"
-              className="block text-sm font-medium mb-1"
-            >
+            <label htmlFor="register-phone" className="block text-sm font-medium mb-1">
               Số điện thoại
             </label>
             <div className="relative">

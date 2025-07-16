@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ComicCartItem from "../Cart/ComicCartItem";
 import PaginationSquare from "../piganation/piganationsquare"; // Đảm bảo đúng đường dẫn
 import { getTopManga } from "../../services/mangService";
+import { useLocation, useNavigate } from "react-router-dom"; // Thêm thư viện này
 
 const formatDate = (dateString) => {
   if (!dateString) return "Chưa cập nhật";
@@ -13,14 +14,30 @@ const FlexCMCItem = () => {
   const [comics, setComics] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Phân trang
   const comicsPerPage = 15;
-  const [currentPage, setCurrentPage] = useState(1);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Lấy page từ URL
+  const searchParams = new URLSearchParams(location.search);
+  const pageFromUrl = parseInt(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
+
+  // Đồng bộ currentPage với URL
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(location.search);
+    if (currentPage !== parseInt(newSearchParams.get("page"))) {
+      newSearchParams.set("page", currentPage);
+      navigate(`${location.pathname}?${newSearchParams.toString()}`, { replace: true });
+    }
+  }, [currentPage, location, navigate]);
+
+  // Fetch dữ liệu
   useEffect(() => {
     const fetchMangaList = async () => {
       try {
-        const data = await getTopManga(30); // Giả sử hàm này trả về toàn bộ dữ liệu
+        const data = await getTopManga(3000); // giả sử hàm này trả về toàn bộ dữ liệu
         setComics(data || []);
       } catch (error) {
         console.error("Lỗi khi tải truyện:", error);
@@ -33,7 +50,7 @@ const FlexCMCItem = () => {
     fetchMangaList();
   }, []);
 
-  // Lấy danh sách truyện theo trang hiện tại
+  // Tính toán danh sách truyện theo trang
   const indexOfLastComic = currentPage * comicsPerPage;
   const indexOfFirstComic = indexOfLastComic - comicsPerPage;
   const currentComics = comics.slice(indexOfFirstComic, indexOfLastComic);
@@ -44,13 +61,13 @@ const FlexCMCItem = () => {
   // Hàm thay đổi trang
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Cuộn lên đầu khi chuyển trang
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div className="container mx-auto px-4 py-6">
       {/* Grid hiển thị truyện */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
         {loading ? (
           <p className="col-span-full text-center text-gray-500">Đang tải dữ liệu...</p>
         ) : currentComics.length > 0 ? (

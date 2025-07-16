@@ -1,13 +1,18 @@
 import { ROUTES } from "../../config/routes";
 import React, { useState, useEffect } from "react";
-
+import { updateMobileMenu } from "../../utils/HeaderUpdate";
 import { Link } from "react-router-dom";
 import { FaUserCircle, FaBars, FaHome, FaHistory, FaListAlt, FaTrophy, FaSearch } from "react-icons/fa";
 import { RiUserFollowLine } from "react-icons/ri";
 const Header = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
- 
+  
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      updateMobileMenu(); // Gọi hàm cập nhật menu mobile sau khi nó được render
+    }
+  }, [isMobileMenuOpen]);
   // Ctrl + K để mở ô tìm kiếm
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -73,7 +78,7 @@ const Header = () => {
 
   {/* Dropdown menu với hiệu ứng animate */}
   {isSubMenuOpen && (
-    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-10 overflow-hidden animate-fadeIn">
+    <div  id="user-dropdown"  className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-10 overflow-hidden animate-fadeIn">
       <div className="py-2">
         <Link
           to="Home/Login/SignIn"
@@ -111,8 +116,9 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
+        
         <div className="md:hidden bg-white border-t">
-          <nav className="flex flex-col p-4 space-y-3">
+          <nav id="molbie-header"  className="flex flex-col p-4 space-y-3">
             <a href="/" className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
               <FaHome /> Trang chủ
             </a>
@@ -133,10 +139,10 @@ const Header = () => {
               <FaTrophy /> Xếp hạng
             </a>
            
-            <Link to={ROUTES.LOGIN} className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
+            <Link to={ROUTES.LOGIN} id="mobile-login" className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
               <FaUserCircle /> Đăng nhập
             </Link>
-            <Link  to={ROUTES.REGISTER} className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
+            <Link  to={ROUTES.REGISTER} id="mobile-register" className="flex items-center gap-2 text-gray-700 py-2 px-3 rounded hover:bg-gray-100">
               <FaUserCircle /> Đăng ký
             </Link>
           </nav>

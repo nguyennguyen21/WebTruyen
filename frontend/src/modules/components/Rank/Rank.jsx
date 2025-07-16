@@ -83,7 +83,7 @@ const ComicsViewRank = () => {
   ];
 
   return (
-    <div className="w-full h-full sm:max-w-xs md:h-185 xl:h-170 md:max-w-md lg:w-200 xl:w-200 mx-auto bg-white rounded-2xl shadow-2xl border border-gray-300 overflow-hidden">
+    <div className="w-full h-full sm:max-w-xs md:h-185 xl:h-170 md:max-w-md lg:w-200 xl:w-200 2xl:max-w-110 2xl:mr-15 mx-auto bg-white rounded-2xl shadow-2xl border border-gray-300 overflow-hidden ">
       {/* Tabs */}
       <div className="flex border-b border-black text-gray-700 text-sm font-semibold bg-purple-50">
         <button
