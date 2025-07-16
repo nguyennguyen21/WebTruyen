@@ -34,7 +34,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative w-full lg:w-70   max-w-md mx-auto">
+    <div className="relative w-full lg:w-105   max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="flex items-center">
         <div className="relative w-full">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
