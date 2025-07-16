@@ -1,25 +1,27 @@
-// src/components/ComicCartItem.jsx
 import React from "react";
+
+const DEFAULT_IMAGE =
+  "https://via.placeholder.com/300x450?text=No+Image";
 
 const ComicCartItem = ({ title, chapter, time, imageSrc }) => {
   return (
-    <div className="truyen-card bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:-translate-y-1">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <img
-        src={imageSrc}
+        src={imageSrc || DEFAULT_IMAGE}
         alt={`Bìa truyện ${title}`}
-        className="truyen-image w-full h-70  object-cover"
-        onError={(e) =>
-          (e.target.src =
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5379deb4-ba5c-4b2f-86bd-4075eb1d49e1.png ")
-        }
+        className="w-full h-auto aspect-[2/3] object-cover"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = DEFAULT_IMAGE;
+        }}
       />
-      <div className="truyen-info p-3">
-        <h3 className="truyen-title font-bold mb-2 line-clamp-2 h-10  overflow-hidden text-ellipsis">
-          {title}
+      <div className="p-2 sm:p-3">
+        <h3 className="font-bold mb-1 text-sm sm:text-base truncate-2-lines">
+          {title || "Không có tiêu đề"}
         </h3>
-        <div className="truyen-meta flex justify-between text-xs text-gray-500 ">
-          <span className="chapter-count font-medium text-gray-700">{chapter}</span>
-          <span className="update-time">{time}</span>
+        <div className="flex justify-between text-xs sm:text-sm text-gray-500">
+          <span className="font-medium text-gray-700">{chapter}</span>
+          <span>{time}</span>
         </div>
       </div>
     </div>

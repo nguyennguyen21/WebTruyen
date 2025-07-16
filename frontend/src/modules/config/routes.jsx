@@ -6,4 +6,6 @@ export const ROUTES = {
   LOGIN: '/home/login/signin',
   REGISTER: '/home/login/signup',
   CHANGE_PASSWORD: '/home/user/changepassword',
+  CENSOR:"admin/censorcommic",
+  ReadCOMMIC:"home/detailcm/readcommic"
 };

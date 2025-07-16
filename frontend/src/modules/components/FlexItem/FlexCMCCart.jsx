@@ -1,111 +1,52 @@
-// src/components/FlexCMCItem.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ComicCartItem from "../Cart/ComicCartItem";
+import { getTopManga } from "../../services/mangService";
+
+const formatDate = (dateString) => {
+  if (!dateString) return "Chưa cập nhật";
+  const date = new Date(dateString);
+  return isNaN(date.getTime()) ? "Chưa cập nhật" : date.toLocaleDateString("vi-VN");
+};
 
 const FlexCMCItem = () => {
-  const comics = [
-    {
-      title: "One Piece - Đảo Hải Tặc Vĩ Đại",
-      chapter: "Chap 1085",
-      time: "2 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/134a3017-1348-455d-8c30-a3ef1bd14a57.png ",
-    },
-   
-    {
-      title: "Attack on Titan - Cuộc Tấn Công Của Người Khổng Lồ",
-      chapter: "Chap 139",
-      time: "3 ngày trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec0825df-7105-4cf0-b771-0ad05cf081b2.png ",
-    },
-    {
-      title: "Demon Slayer: Kimetsu no Yaiba",
-      chapter: "Chap 205",
-      time: "5 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e70ce81c-4720-4c81-92d8-7c36bcce82ab.png ",
-    },
-      {
-      title: "One Piece - Đảo Hải Tặc Vĩ Đại",
-      chapter: "Chap 1085",
-      time: "2 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/134a3017-1348-455d-8c30-a3ef1bd14a57.png ",
-    },
-   
-    {
-      title: "Attack on Titan - Cuộc Tấn Công Của Người Khổng Lồ",
-      chapter: "Chap 139",
-      time: "3 ngày trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec0825df-7105-4cf0-b771-0ad05cf081b2.png ",
-    },
-    {
-      title: "Demon Slayer: Kimetsu no Yaiba",
-      chapter: "Chap 205",
-      time: "5 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e70ce81c-4720-4c81-92d8-7c36bcce82ab.png ",
-    },
-      {
-      title: "One Piece - Đảo Hải Tặc Vĩ Đại",
-      chapter: "Chap 1085",
-      time: "2 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/134a3017-1348-455d-8c30-a3ef1bd14a57.png ",
-    },
-   
-    {
-      title: "Attack on Titan - Cuộc Tấn Công Của Người Khổng Lồ",
-      chapter: "Chap 139",
-      time: "3 ngày trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec0825df-7105-4cf0-b771-0ad05cf081b2.png ",
-    },
-    {
-      title: "Demon Slayer: Kimetsu no Yaiba",
-      chapter: "Chap 205",
-      time: "5 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e70ce81c-4720-4c81-92d8-7c36bcce82ab.png ",
-    },
-      {
-      title: "One Piece - Đảo Hải Tặc Vĩ Đại",
-      chapter: "Chap 1085",
-      time: "2 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/134a3017-1348-455d-8c30-a3ef1bd14a57.png ",
-    },
-   
-    {
-      title: "Attack on Titan - Cuộc Tấn Công Của Người Khổng Lồ",
-      chapter: "Chap 139",
-      time: "3 ngày trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec0825df-7105-4cf0-b771-0ad05cf081b2.png ",
-    },
-    {
-      title: "Demon Slayer: Kimetsu no Yaiba",
-      chapter: "Chap 205",
-      time: "5 giờ trước",
-      imageSrc:
-        "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e70ce81c-4720-4c81-92d8-7c36bcce82ab.png ",
-    },
-  ];
+  const [comics, setComics] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMangaList = async () => {
+      try {
+        const data = await getTopManga(3000);
+        setComics(data || []);
+      } catch (error) {
+        console.error("Lỗi khi tải truyện:", error);
+        setComics([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMangaList();
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {comics.map((comic, index) => (
-          <ComicCartItem
-            key={index}
-            title={comic.title}
-            chapter={comic.chapter}
-            time={comic.time}
-            imageSrc={comic.imageSrc}
-          />
-        ))}
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
+        {loading ? (
+          <p className="col-span-full text-center text-gray-500">Đang tải dữ liệu...</p>
+        ) : comics.length > 0 ? (
+          comics.map((comic, index) => (
+            <ComicCartItem
+              key={comic.id || `comic-${index}`}
+              title={comic.title || "Không có tiêu đề"}
+              chapter={`Chap ${comic.chapter || 0}`}
+              time={formatDate(comic.updatedAt || comic.createdAt)}
+              imageSrc={comic.coverImage || ""}  // <-- SỬA TẠI ĐÂY
+            />
+          ))
+        ) : (
+          <p className="col-span-full text-center text-gray-500">Không có truyện nào.</p>
+        )}
       </div>
     </div>
   );
