@@ -1,4 +1,1 @@
-// src/api/config.js
-const API_URL = 'https://api.yourbackend.com/v1 ';
-
-export { API_URL };
+export const API_URL = "http://localhost:5193/api";

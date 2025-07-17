@@ -135,7 +135,7 @@ const Fooster = () => {
                 <input
                   type="email"
                   placeholder="Email của bạn"
-                  className="flex-grow px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-blue-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 text-white placeholder-blue-200 outline-none transition"
+                  className="flex-grow px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-blue-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 text-black placeholder-blue-200 outline-none transition"
                 />
                 <button
                   type="submit"
